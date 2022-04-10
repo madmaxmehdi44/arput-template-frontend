@@ -1,18 +1,18 @@
-import { CogIcon, PlayIcon } from "@heroicons/react/solid";
-import { json } from "stream/consumers";
+// import { CogIcon, PlayIcon } from "@heroicons/react/solid";
+// import { json } from "stream/consumers";
 import { format } from 'date-fns';
 
-function RecommendedList(data) {
+function RecommendedList({data}) {
   // {
   //   console.log(data);
   // }
-  const post = "تشیتشستشسی" || data.data.attributes;
-  const title = "تشیتشستشسی" || post.title;
-  const userName = "تشیتشستشسی" || post.title;
-  const publishedAt = "تشیتشستشسی" || format(new Date(post.publishedAt), 'kk:mm dd-MM-yyyy');
-  const imageUrl ="تشیتشستشسی" || 
-    (post.cover.data &&
-    (process.env.API_URL + post.cover.data.attributes.url));
+  const post = "تشیتشستشسی" //|| data.data.attributes;
+  const title = "تشیتشستشسی" //|| post.title;
+  const userName = "تشیتشستشسی" //|| post.title;
+  const publishedAt = "تشیتشستشسی" //|| format(new Date(post.publishedAt), 'kk:mm dd-MM-yyyy');
+  const imageUrl ="تشیتشستشسی" //|| 
+    // (post.cover.data &&
+    // (process.env.API_URL + post.cover.data.attributes.url));
 
   return (
     <div dir="rtl" className="flex items-center px-3 py-2 mb-2 duration-200 ease-in-out cursor-pointer hover:bg-gray-900 ">

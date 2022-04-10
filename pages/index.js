@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link"
 // import Articles from "../components/articles";
 import Layout from "../components/layout";
 // import Seo from "../components/seo";
@@ -10,6 +11,7 @@ import Header from "../components/Header";
 import Collection from "../components/Collection";
 import LeftMenu from "../components/LeftMenu";
 import VideoContainer from "../components/VideoContainer";
+import RecommendedList from "../components/RecommendedList";
 
 
 const Home = ({ articles, categories }) => {
@@ -111,11 +113,11 @@ const Home = ({ articles, categories }) => {
                       //     data.attributes.video
                       // );
                       const imageSource =
-                        process.env.API_URL +
-                        data.attributes.Video.data.attributes.url;
+                        
+                        data.attributes.media.data.attributes.url;
                       setImage({
                         name: data.attributes.title,
-                        imageSrc: data.attributes.Video.data && imageSource,
+                        imageSrc: data.attributes.media.data && imageSource,
                       });
                     }}
                   >
