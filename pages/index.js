@@ -21,14 +21,7 @@ const Home = ({ categories }) => {
 export async function getStaticProps() {
   // Run API calls in parallel
   const [categoriesRes] = await Promise.all([
-    // fetchAPI("/articles", { populate: ["image", "category"] }),
-    fetchAPI("/api/categories", { populate: "*" }),
-    // fetchAPI("/homepage", {
-    //   populate: {
-    //     hero: "*",
-    //     seo: { populate: "*" },
-    //   },
-    // }),
+    fetchAPI("/categories", { populate: "*" }),
   ]);
 
   return {
