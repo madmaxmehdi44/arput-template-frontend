@@ -2,7 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Home({categories}) {
+
+
   return (
     <div className={styles.container}>
       <Head>
@@ -24,7 +26,13 @@ export default function Home() {
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
             <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
+            <ul>
+              {categories.map((category) => (
+<li > {category.slug}</li>
+              ))
+
+}
+            </ul>
           </a>
 
           <a href="https://nextjs.org/learn" className={styles.card}>
@@ -67,3 +75,18 @@ export default function Home() {
     </div>
   )
 }
+
+
+export async function getStaticProps() {
+  const res = await fetch(
+    `https://arput-backend-srtapi.herokuapp.com/api/articles`
+  );
+
+  const categories = await res.json(); 
+
+  return {
+    props:{
+      categories,
+    },
+  }
+  }
