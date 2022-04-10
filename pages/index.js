@@ -28,7 +28,7 @@ export default function Home({categories}) {
             <h2>Documentation &rarr;</h2>
             <ul>
               {categories.map((category) => (
-<li > {category.slug}</li>
+<li > {category.attributes.slug}</li>
               ))
 
 }
@@ -41,7 +41,7 @@ export default function Home({categories}) {
           </a>
 
           <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
+            href="http://github.com/vercel/next.js/tree/canary/examples"
             className={styles.card}
           >
             <h2>Examples &rarr;</h2>
