@@ -9,7 +9,8 @@ const Nav = ({ categories }) => {
           <ul className="uk-navbar-nav">
             <li>
               <Link href="/">
-                <a><h1>فاطمه حیایی</h1></a>
+                <a><h1>فاطمه حیایی
+                    مهدی زاده مینایی</h1></a>
               </Link>
             </li>
           </ul>
