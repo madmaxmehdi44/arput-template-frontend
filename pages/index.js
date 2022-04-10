@@ -28,7 +28,7 @@ export default function Home({categories}) {
             <h2>Documentation &rarr;</h2>
             <ul>
               {categories.map((category) => (
-<li > {category.attributes.slug}</li>
+<li > {category.data.attributes.slug}</li>
               ))
 
 }
