@@ -27,6 +27,7 @@ function VideoContainer(data) {
     //     /> */}
 
     // {/* <div className="flex items-center justify-center h-screen p-4 bg-indigo-700">
+    
     <div className="bg-black rounded-none aspect-w-16 aspect-h-8 md:aspect-h-10 lg:aspect-h-8 sm:aspect-h-5 ">
       <div
         id="mainVideoName"
@@ -50,6 +51,7 @@ function VideoContainer(data) {
         className=""
       ></video>
     </div>
+   
     // </div>
     // {/* <video
     //   // src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4"

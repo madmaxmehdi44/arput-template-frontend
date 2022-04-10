@@ -1,4 +1,4 @@
-function Error({ statusCode }: any): JSX.Element {
+function Error({ statusCode }) {
   return (
     <p>
       {statusCode
@@ -8,7 +8,7 @@ function Error({ statusCode }: any): JSX.Element {
   );
 }
 
-Error.getInitialProps = ({ res, err }: any) => {
+Error.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
   return { statusCode };
 };

@@ -1,16 +1,60 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+pre {
+	background-color: #333;
+	color: #fff;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+hr {
+	border-color: #fff;
 }
 
-* {
-  box-sizing: border-box;
+.gsap-btn {
+	background-color: #73b102;
+	color: #fff;
 }
+
+.gsap-btn:hover,
+.gsap-btn:active,
+.gsap-btn:focus {
+	background-color: #88ce02;
+	color: #fff;
+}
+
+.modal {
+	background-color: rgba(30, 30, 30, 0.75);
+	display: block;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.modal .modal-dialog {
+  opacity: 0;
+	visibility: hidden;
+}
+
+.modal-content {
+	color: #333;
+}
+
+
+
+
+button {
+	background: transparent;
+	width: 240px;
+	border: 0;
+	cursor: pointer;
+	padding: 0;
+  }
+  
+  .ear-left-outer, .ear-right-outer {fill:#919191;}
+  .ear-left-inner, .ear-right-inner {fill:#6D6D6D;}
+  .eye-right-outer, .eye-left-outer, .nostril-right-outer, .nostril-left-outer, .body {fill:#AAAAAA;}
+  .eye-right-inner, .eye-left-inner {fill:#FFFFFF;}
+  .nostril-right-inner, .nostril-left-inner{fill:#8C8C8C;}
+  .freckle {fill:#7C7C7C;}
+  .tongue {fill:#FF4848;}
+  .tooth-left, .tooth-right {fill:#FFFFE1;}

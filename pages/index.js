@@ -12,16 +12,14 @@ import LeftMenu from "../components/LeftMenu";
 import VideoContainer from "../components/VideoContainer";
 
 
-
 const Home = ({ articles, categories }) => {
   const tl = gsap.timeline({ delay: 0.3 });
   const selectedItemRecommended = useState(0);
   const [isImage, setImage] = useState({
-    name: articles[0].attributes.title,
+    name: "مهدی مینایی",
     imageSrc:
-      (articles[0].attributes.Video.data || "") &&
-      process.env. +
-        articles[0].attributes.Video.data.attributes.url,
+      ("https://images.unsplash.com/photo-1621609764095-b32bbe35cf3a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80" || "") &&
+      "https://samplelib.com/lib/preview/mp4/sample-5s.mp4",
   });
   useEffect(() => {
     const scrollContainerId = document.querySelector("#scrollContainerId");
@@ -69,10 +67,10 @@ const Home = ({ articles, categories }) => {
       className="flex flex-col w-screen h-screen overflow-hidden bg-mainBg"
       data-theme="cupcake"
     >
-      <Head>
+      {/* <Head>
         <title>تیم آرپوت</title>
         <link rel="icon" href="/favicon.ico" />
-      </Head>
+      </Head> */}
       {/* <MainModal /> */}
       <Header />
       {/* <Handle categories /> */}

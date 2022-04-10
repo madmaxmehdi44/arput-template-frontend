@@ -8,7 +8,7 @@ import {
 } from "@heroicons/react/outline";
 // import MedModal from "./MedModal";
 import React, { useState } from "react";
-// import { DarkLight } from "./DarkLight";
+import { DarkLight } from "../components/DarkLight";
 
 export default function Header() {
   const [isDarkMode, setIsDarkMode] = useState(() => false);
@@ -60,10 +60,10 @@ export default function Header() {
       >
         <BellIcon className="w-[30px] h-[30px] text-gray-300 hover:text-sky-400 cursor-pointer " />
         <MoonIcon className="w-[30px] h-[30px] text-gray-300 hover:text-sky-400 cursor-pointer " />
-        {/* <DarkLight /> */}
+        <DarkLight />
 
         <div className="flex items-center" id="loginIcon">
-          {/* <img
+          <img
             src="https://lh3.googleusercontent.com/ogw/ADea4I4IObJfW4zzID_tkG_mAEOCkD4V0UymOFBoLve-ng=s192-c-mo"
             alt=""
             className="w-[40px] h-[40px] rounded-full object-cover min-w-[40px]"
@@ -72,7 +72,7 @@ export default function Header() {
             Mehdi Minaee
             <span className="block text-[12px]">Product Designer</span>
           </p>
-         */}
+        
           <UserIcon className="w-[30px] h-[30px] text-gray-300 hover:text-sky-400 cursor-pointer " />
         </div>
       </div>

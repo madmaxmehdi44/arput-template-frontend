@@ -1,6 +1,6 @@
 import App from "next/app";
 import Head from "next/head";
-import "../assets/css/style.css";
+import "../styles/globals.css";
 import { createContext } from "react";
 import { fetchAPI } from "../lib/api";
 import { getStrapiMedia } from "../lib/media";
@@ -9,20 +9,20 @@ import { getStrapiMedia } from "../lib/media";
 export const GlobalContext = createContext({});
 
 const MyApp = ({ Component, pageProps }) => {
-  // const { global } = pageProps;
+  const { global } = pageProps;
 
   return (
-    <>
-      <Head>
+    <div>
+      {/* <Head>
         <link
           rel="shortcut icon"
           // href={getStrapiMedia(global.attributes.favicon)}
         />
-      </Head>
+      </Head> */}
       <GlobalContext.Provider value={pageProps}>
         <Component {...pageProps} />
       </GlobalContext.Provider>
-    </>
+    </div>
   );
 };
 
