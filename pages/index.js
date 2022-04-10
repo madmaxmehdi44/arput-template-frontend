@@ -5,11 +5,12 @@ import Layout from "../components/layout";
 import { fetchAPI } from "../lib/api";
 
 const Home = ({ categories }) => {
+  // console.log(JSON.stringify(categories.attributes));
   return (
     <Layout categories={categories}>
       <div className="uk-section">
         <div className="uk-container uk-container-large">
-          <h1>{categories.attributes.slug}</h1>
+          <h1>{categories.attributes}</h1>
         </div>
       </div>
     </Layout>
