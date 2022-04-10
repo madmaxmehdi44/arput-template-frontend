@@ -3,34 +3,183 @@ import React from "react";
 import Layout from "../components/layout";
 // import Seo from "../components/seo";
 import { fetchAPI } from "../lib/api";
+import Head from "next/head";
+import { useEffect, useState } from "react";
+import { gsap } from "gsap";
+import Header from "../components/Header";
+import Collection from "../components/Collection";
+import LeftMenu from "../components/LeftMenu";
+import VideoContainer from "../components/VideoContainer";
 
-const Home = ({ categories }) => {
+
+
+const Home = ({ articles, categories }) => {
+  const tl = gsap.timeline({ delay: 0.3 });
+  const selectedItemRecommended = useState(0);
+  const [isImage, setImage] = useState({
+    name: articles[0].attributes.title,
+    imageSrc:
+      (articles[0].attributes.Video.data || "") &&
+      process.env. +
+        articles[0].attributes.Video.data.attributes.url,
+  });
+  useEffect(() => {
+    const scrollContainerId = document.querySelector("#scrollContainerId");
+    scrollContainerId?.addEventListener(
+      "wheel",
+      (e) => {
+        // console.log(event);
+
+        scrollContainerId.scrollLeft += (e).deltaY;
+      },
+      { passive: true }
+    );
+
+    // tl.from(
+    //   "#logo",
+    //   { x: -50, opacity: 0, ease: "back.out(1.7)", duration: 1.5 },
+    //   "Start"
+    // )
+      // .from(
+      //   "#searchBox",
+      //   { x: -50, opacity: 0, ease: "back.out(1.7)", duration: 0.5 },
+      //   "Start"
+      // )
+      // .from(
+      //   "#profileContainer",
+      //   { x: -50, opacity: 0, ease: "back.out(1.7)", duration: 0.5 },
+      //   "Start"
+      // )
+      // .from(
+      //   "#leftMenu div",
+      //   {
+      //     xPercent: -100,
+      //     opacity: 0,
+      //     stagger: 0.03,
+      //     ease: "back.out(1.7)",
+      //     duration: 0.5,
+      //   },
+      //   "Start"
+      // );
+  }, []);
   // console.log(JSON.stringify(categories.attributes));
   return (
-    <Layout categories={categories}>
-      <div className="uk-section">
-        <div className="uk-container uk-container-large">
-          <ul>
-            <li>
-            <h1>{categories[0].attributes.slug}</h1>
+    // <Layout categories={categories}>
+    <div
+      className="flex flex-col w-screen h-screen overflow-hidden bg-mainBg"
+      data-theme="cupcake"
+    >
+      <Head>
+        <title>تیم آرپوت</title>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      {/* <MainModal /> */}
+      <Header />
+      {/* <Handle categories /> */}
+      {/* {posts.data.map(({ id, attributes }: any) => {
+        <div key={id}>
+          {attributes.title}
 
-            </li>
-          </ul>
+          {console.log("Imagelink: " + attributes)}
+        </div>;
+      })} */}
+      {/* MainContainer */}
+      
+      <div className="flex w-full h-[calc(100%-80px)] overflow-hidden">
+        <LeftMenu />
+
+        {/* Main Container */}
+        <div className="sm:w-[calc(100%-60px)] md:w-[90%] h-full">
+          {/* Top Section */}
+          <div className=" w-full h-[72%] grid max-h-[480px] bg-searchBg grid-cols-3 p-0.5 gap-x-0.5">
+            {/* Video Container */}
+            <div className="relative items-start justify-center p-0 overflow-hidden md:col-span-2 sm:col-span-6">
+              <VideoContainer data={isImage} />
+            </div>
+            {/* Recommended List */}
+            <div className="overflow-y-auto bg-searchBg text-textColor md:col-span-1 sm:col-span-6 scrollbar scrollbar-thin scrollbar-thumb-gray-800">
+              <div className="sticky -top-0.5 w-full">
+                <p className="text-textColor justify-center items-center bg-gray-800 relative text-[18px] font-bold my-2 px-2 text-right ">
+                  نمونه کارها
+                </p>
+              </div>
+              {articles.data &&
+                articles.data.map((data) => (
+                  <div
+                    key={data.id}
+                    onClick={() => {
+                      // console.log(
+                      //   "from Index -> Recommended Component => " +
+                      //     data.attributes.video
+                      // );
+                      const imageSource =
+                        process.env.API_URL +
+                        data.attributes.Video.data.attributes.url;
+                      setImage({
+                        name: data.attributes.title,
+                        imageSrc: data.attributes.Video.data && imageSource,
+                      });
+                    }}
+                  >
+                    <RecommendedList data={data} key={data.id} />
+                  </div>
+                ))}
+            </div>
+          </div>
+          {/* Bottom Section */}
+          <div dir="rtl" className="w-full h-[28%]">
+            <div
+              className="flex items-center py-2 overflow-x-scroll scrollbar-none "
+              id="scrollContainerId"
+            >
+              {categories.data &&
+                categories.data.map((data) => (
+                  <div
+                    key={data.id}
+                    // onClick={() => {
+                    //   console.log(
+                    //     "from Index -> Collection Component => " +
+                    //       data.attributes.video
+                    //   );
+                    //   setImageCat({
+                    //     name: data.attributes.name,
+                    //     imageSrc:
+                    //       data.attributes.cover.data &&
+                    //       process.env.API_URL +
+                    //         data.attributes.cover.data.attributes.url,
+                    //   });
+                    // }}
+                  >
+                    {/* {console.log(JSON.stringify(data.attributes.cover.data[0].attributes))} */}
+                    <Link href={`/categories/${data.attributes.slug}`}>
+                     <a>
+                        <Collection
+                          data={data.attributes.cover.data[0].attributes}
+                          slug={data.attributes.slug}
+                        />
+                      </a>
+                    </Link>
+                  </div>
+                ))}
+            </div>
+          </div>
         </div>
       </div>
-    </Layout>
+    </div>
+    // </Layout>
   );
 };
 
 export async function getStaticProps() {
   // Run API calls in parallel
-  const [categoriesRes] = await Promise.all([
-    fetchAPI("/categories", { populate: "*" }),
+  const [articlesRes, categoriesRes] = await Promise.all([
+     fetchAPI("/articles", { populate: "*" }),
+     fetchAPI("/categories", { populate: "*" }),
   ]);
 
   return {
     props: {
-      // articles: articlesRes.data,
+      articles: articlesRes.data,
       categories: categoriesRes.data,
       // homepage: homepageRes.data,
     },
