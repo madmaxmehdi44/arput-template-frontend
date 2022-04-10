@@ -79,7 +79,7 @@ export default function Home({categories}) {
 
 export async function getStaticProps() {
   const res = await fetch(
-    `https://arput-backend-srtapi.herokuapp.com/api/articles`
+    `https://arput-backend-srtapi.herokuapp.com/api/categories`
   );
 
   const categories = await res.json(); 
