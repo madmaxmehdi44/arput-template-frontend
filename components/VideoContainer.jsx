@@ -1,14 +1,14 @@
 import { CogIcon, PlayIcon } from "@heroicons/react/solid";
 import { NextPage } from "next";
-import { TimelineLite } from "gsap";
+import { gsap } from "gsap";
 import { useEffect, useState } from "react";
 
 // interface props {}
 
-function VideoContainer(data) {
+export default function VideoContainer({ article }) {
   const [isPlaying, setPlaying] = useState(false);
+  const tl = gsap.timeline({ delay: 0.3 });
 
-  const tl = new TimelineLite({ delay: 0.3 });
   // console.log("From VideoConvertor: " + JSON.stringify(data));
   useEffect(() => {
     if (isPlaying) {
@@ -16,7 +16,8 @@ function VideoContainer(data) {
     } else {
       tl.fromTo("#mainVideoName", { y: -20, opacity: 0 }, { y: 0, opacity: 1 });
     }
-  }, [isPlaying, data]);
+    // console.log(JSON.stringify(article))
+  }, [isPlaying, article]);
   return (
     // {/*  <div className="relative w-full h-full">
     //      <img
@@ -27,7 +28,7 @@ function VideoContainer(data) {
     //     /> */}
 
     // {/* <div className="flex items-center justify-center h-screen p-4 bg-indigo-700">
-    
+
     <div className="bg-black rounded-none aspect-w-16 aspect-h-8 md:aspect-h-10 lg:aspect-h-8 sm:aspect-h-5 ">
       <div
         id="mainVideoName"
@@ -37,21 +38,21 @@ function VideoContainer(data) {
           className="flex items-center justify-center px-2 font-bold text-gray-800 text-md"
           dir="rtl"
         >
-          نام پروژه: {data.data.name}
+          نام پروژه: {article.title}
         </h2>
       </div>
       <video
-        // src={data.data.imageSrc}
-        src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4"
+        src={article.media.data[0].attributes.url}
+        //src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4"
         controls
         playsInline
-        title="Mehdi Minaee"
+        title={article.title}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
         className=""
       ></video>
     </div>
-   
+
     // </div>
     // {/* <video
     //   // src="https://samplelib.com/lib/preview/mp4/sample-5s.mp4"
@@ -78,4 +79,4 @@ function VideoContainer(data) {
   );
 }
 
-export default VideoContainer;
+;

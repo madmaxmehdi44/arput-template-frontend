@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link"
+import Link from "next/link";
 // import Articles from "../components/articles";
 import Layout from "../components/layout";
 // import Seo from "../components/seo";
@@ -13,16 +13,10 @@ import LeftMenu from "../components/LeftMenu";
 import VideoContainer from "../components/VideoContainer";
 import RecommendedList from "../components/RecommendedList";
 
-
 const Home = ({ articles, categories }) => {
   const tl = gsap.timeline({ delay: 0.3 });
   const selectedItemRecommended = useState(0);
-  const [isImage, setImage] = useState({
-    name: "مهدی مینایی",
-    imageSrc:
-      ("https://images.unsplash.com/photo-1621609764095-b32bbe35cf3a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80" || "") &&
-      "https://samplelib.com/lib/preview/mp4/sample-5s.mp4",
-  });
+  const [isArticle, setArticle] = useState(articles[0].attributes);
   useEffect(() => {
     const scrollContainerId = document.querySelector("#scrollContainerId");
     scrollContainerId?.addEventListener(
@@ -30,7 +24,7 @@ const Home = ({ articles, categories }) => {
       (e) => {
         // console.log(event);
 
-        scrollContainerId.scrollLeft += (e).deltaY;
+        scrollContainerId.scrollLeft += e.deltaY;
       },
       { passive: true }
     );
@@ -40,27 +34,27 @@ const Home = ({ articles, categories }) => {
     //   { x: -50, opacity: 0, ease: "back.out(1.7)", duration: 1.5 },
     //   "Start"
     // )
-      // .from(
-      //   "#searchBox",
-      //   { x: -50, opacity: 0, ease: "back.out(1.7)", duration: 0.5 },
-      //   "Start"
-      // )
-      // .from(
-      //   "#profileContainer",
-      //   { x: -50, opacity: 0, ease: "back.out(1.7)", duration: 0.5 },
-      //   "Start"
-      // )
-      // .from(
-      //   "#leftMenu div",
-      //   {
-      //     xPercent: -100,
-      //     opacity: 0,
-      //     stagger: 0.03,
-      //     ease: "back.out(1.7)",
-      //     duration: 0.5,
-      //   },
-      //   "Start"
-      // );
+    // .from(
+    //   "#searchBox",
+    //   { x: -50, opacity: 0, ease: "back.out(1.7)", duration: 0.5 },
+    //   "Start"
+    // )
+    // .from(
+    //   "#profileContainer",
+    //   { x: -50, opacity: 0, ease: "back.out(1.7)", duration: 0.5 },
+    //   "Start"
+    // )
+    // .from(
+    //   "#leftMenu div",
+    //   {
+    //     xPercent: -100,
+    //     opacity: 0,
+    //     stagger: 0.03,
+    //     ease: "back.out(1.7)",
+    //     duration: 0.5,
+    //   },
+    //   "Start"
+    // );
   }, []);
   // console.log(JSON.stringify(categories.attributes));
   return (
@@ -84,7 +78,7 @@ const Home = ({ articles, categories }) => {
         </div>;
       })} */}
       {/* MainContainer */}
-      
+
       <div className="flex w-full h-[calc(100%-80px)] overflow-hidden">
         <LeftMenu />
 
@@ -94,7 +88,7 @@ const Home = ({ articles, categories }) => {
           <div className=" w-full h-[72%] grid max-h-[480px] bg-searchBg grid-cols-3 p-0.5 gap-x-0.5">
             {/* Video Container */}
             <div className="relative items-start justify-center p-0 overflow-hidden md:col-span-2 sm:col-span-6">
-              <VideoContainer data={isImage} />
+              <VideoContainer article={isArticle} />
             </div>
             {/* Recommended List */}
             <div className="overflow-y-auto bg-searchBg text-textColor md:col-span-1 sm:col-span-6 scrollbar scrollbar-thin scrollbar-thumb-gray-800">
@@ -103,25 +97,19 @@ const Home = ({ articles, categories }) => {
                   نمونه کارها
                 </p>
               </div>
-              {articles.data &&
-                articles.data.map((data) => (
+              {articles &&
+                articles.map((article) => (
                   <div
-                    key={data.id}
+                    key={article.id}
                     onClick={() => {
                       // console.log(
                       //   "from Index -> Recommended Component => " +
                       //     data.attributes.video
                       // );
-                      const imageSource =
-                        
-                        data.attributes.media.data.attributes.url;
-                      setImage({
-                        name: data.attributes.title,
-                        imageSrc: data.attributes.media.data && imageSource,
-                      });
+                      setArticle( article.attributes );
                     }}
                   >
-                    <RecommendedList data={data} key={data.id} />
+                    <RecommendedList article={article} key={article.id} />
                   </div>
                 ))}
             </div>
@@ -132,31 +120,12 @@ const Home = ({ articles, categories }) => {
               className="flex items-center py-2 overflow-x-scroll scrollbar-none "
               id="scrollContainerId"
             >
-              {categories.data &&
-                categories.data.map((data) => (
-                  <div
-                    key={data.id}
-                    // onClick={() => {
-                    //   console.log(
-                    //     "from Index -> Collection Component => " +
-                    //       data.attributes.video
-                    //   );
-                    //   setImageCat({
-                    //     name: data.attributes.name,
-                    //     imageSrc:
-                    //       data.attributes.cover.data &&
-                    //       process.env.API_URL +
-                    //         data.attributes.cover.data.attributes.url,
-                    //   });
-                    // }}
-                  >
-                    {/* {console.log(JSON.stringify(data.attributes.cover.data[0].attributes))} */}
-                    <Link href={`/categories/${data.attributes.slug}`}>
-                     <a>
-                        <Collection
-                          data={data.attributes.cover.data[0].attributes}
-                          slug={data.attributes.slug}
-                        />
+              {categories &&
+                categories.map((category) => (
+                  <div key={category.id}>
+                    <Link href={`/categories/${category.attributes.slug}`}>
+                      <a>
+                        <Collection category={category} />
                       </a>
                     </Link>
                   </div>
@@ -173,8 +142,8 @@ const Home = ({ articles, categories }) => {
 export async function getStaticProps() {
   // Run API calls in parallel
   const [articlesRes, categoriesRes] = await Promise.all([
-     fetchAPI("/articles", { populate: "*" }),
-     fetchAPI("/categories", { populate: "*" }),
+    fetchAPI("/articles", { populate: "*" }),
+    fetchAPI("/categories", { populate: "*" }),
   ]);
 
   return {
