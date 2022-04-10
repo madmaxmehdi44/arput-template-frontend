@@ -10,7 +10,12 @@ const Home = ({ categories }) => {
     <Layout categories={categories}>
       <div className="uk-section">
         <div className="uk-container uk-container-large">
-          <h1>{categories.attributes}</h1>
+          <ul>
+            <li>
+            <h1>{categories[0].attributes.slug}</h1>
+
+            </li>
+          </ul>
         </div>
       </div>
     </Layout>
