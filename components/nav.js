@@ -20,7 +20,7 @@ const Nav = ({ categories }) => {
               return (
                 <li key={category.id}>
                   <Link href={`/category/${category.attributes.slug}`}>
-                    <a className="uk-link-reset">{category.attributes.name}</a>
+                    <a className="uk-link-reset">{category.attributes.slug}</a>
                   </Link>
                 </li>
               );
