@@ -2,9 +2,17 @@ import App from "next/app";
 import Head from "next/head";
 import "../styles/globals.css";
 import { createContext } from "react";
+import dynamic from 'next/dynamic'
 import { fetchAPI } from "../lib/api";
 import { getStrapiMedia } from "../lib/media";
+import "nprogress/nprogress.css";
 
+const TopProgressBar = dynamic(
+  () => {
+    return import("../components/TopProgressBar");
+  },
+  { ssr: false },
+);
 // Store Strapi Global object in context
 export const GlobalContext = createContext({});
 
@@ -13,6 +21,8 @@ const MyApp = ({ Component, pageProps }) => {
 
   return (
     <div>
+          <TopProgressBar />
+
       {/* <Head>
         <link
           rel="shortcut icon"

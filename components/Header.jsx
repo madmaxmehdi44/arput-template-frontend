@@ -9,6 +9,7 @@ import {
 // import MedModal from "./MedModal";
 import React, { useState } from "react";
 import { DarkLight } from "../components/DarkLight";
+import Link from "next/link";
 
 export default function Header() {
   const [isDarkMode, setIsDarkMode] = useState(() => false);
@@ -20,6 +21,8 @@ export default function Header() {
     >
       {/* <MedModal /> */}
       {/* Logo */}
+      <Link href={`/`}>
+      <a>
       <svg
         id="logo"
         className="md:w-[130px] md:h-[80px] sm:w-[140px] sm:h-[80px] lg:w-[150px] lg:h-[80px]"
@@ -41,6 +44,8 @@ export default function Header() {
           />
         </g>{" "}
       </svg>
+      </a>
+      </Link>
       {/* Search Box */}
       <div
         id="searchBox"
