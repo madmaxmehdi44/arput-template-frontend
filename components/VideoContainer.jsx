@@ -29,7 +29,7 @@ export default function VideoContainer({ article }) {
 
     // {/* <div className="flex items-center justify-center h-screen p-4 bg-indigo-700">
 
-    <div className="bg-black rounded-none aspect-w-16 aspect-h-8 md:aspect-h-10 lg:aspect-h-8 sm:aspect-h-5 ">
+    <div className="bg-black rounded-none aspect-w-16 aspect-h-8 md:aspect-h-10 lg:aspect-h-8 sm:aspect-h-9 ">
       <div
         id="mainVideoName"
         className="items-center object-cover absolute top-0 bg-gray-300 left-0   z-[40] w-full h-[25px]"
