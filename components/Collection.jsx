@@ -13,8 +13,8 @@ return (
       )} */}
 
       <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcu_4crt2iriiyOGdBbPZSfcaSnl9z1IOf6Q&usqp=CAU"
-        // src={imageUrl}
+        //src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcu_4crt2iriiyOGdBbPZSfcaSnl9z1IOf6Q&usqp=CAU"
+        src={category.attributes.media.data.attributes.url}
         alt={category.attributes.title}
         className="object-cover w-full h-full transform rotate-0 hover:scale-150 hover:rotate-12"
       />
