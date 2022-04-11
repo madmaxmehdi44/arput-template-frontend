@@ -68,9 +68,9 @@ export default function Header() {
             alt=""
             className="w-[40px] h-[40px] rounded-full object-cover min-w-[40px]"
           />
-          <p className="text-textColor text-[16px] font-bold ml-2">
+          <p className="text-textColor text-[9px] font-bold ml-2">
             Mehdi Minaee
-            <span className="block text-[12px]">Product Designer</span>
+            <span className="block text-[8px]">Product Designer</span>
           </p>
         
           <UserIcon className="w-[30px] h-[30px] text-gray-300 hover:text-sky-400 cursor-pointer " />

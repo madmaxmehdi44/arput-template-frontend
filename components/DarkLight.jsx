@@ -6,7 +6,7 @@ export const DarkLight = () => {
   // 
   return (
     <>
-    <h1>DARK MODE</h1>
+    <h1></h1>
     </>
     // <DarkModeToggle 
     //   onChange={setIsDarkMode}
