@@ -19,10 +19,10 @@ function RecommendedList({ article }) {
         <div className="flex flex-wrap items-center mt-1 ">
           {/* <p>#َARPut #Augmented-Reallity</p> */}
           <p className="text-[12px] sm:text-[9px] font-medium text-textColor lg:ml-2 md:ml-0">
-            نویسنده: <span>{article.attributes.description}</span>
+            خلاصه: <span>{article.attributes.shortDescription}</span>
           </p>
           <p className="text-[11px]  sm:text-[9px] font-bold text-textColor sm:mx-2 md:mx-2 lg:mx-0">
-            تاریخ انتشار: <span>{article.attributes.slug}</span>
+            زمان انتشار : <span>{article.attributes.createdAt}</span>
           </p>
         </div>
       </div>

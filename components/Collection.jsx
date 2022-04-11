@@ -22,7 +22,7 @@ return (
         <h2 className="text-textColor text-[16px] font-bold">{category.attributes.title}</h2>
       </div>
     </div>    
-    {children}
+    {/* {children} */}
   </>
   );};
 
