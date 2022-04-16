@@ -87,7 +87,7 @@ const Home = ({ articles, categories }) => {
           {/* Top Section */}
           <div className=" w-full h-[72%] grid max-h-[480px] bg-searchBg grid-cols-3 p-0.5 gap-x-0.5">
             {/* Video Container */}
-            <div className="relative items-start justify-center p-0 pb-20 overflow-hidden md:col-span-2 sm:col-span-6 h-50">
+            <div className="relative items-start justify-center p-0  overflow-hidden md:col-span-2 sm:col-span-6 h-50">
               <VideoContainer article={isArticle} />
             </div>
             {/* Recommended List */}
